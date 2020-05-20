@@ -64,18 +64,43 @@ app.delete('/api/members/:id', (req, res) => {
 
 // Add new member 
 app.post('/api/members', function (req, res) {
-//   var bodyData = {  
-//     firstName:req.body.lastName,  
-//     lastName:req.body.lastName,
-//     jobTitle:req.body.jobTitle,
-//     team:req.body.team,
-//     status:req.body.status
-//   }; 
-//   console.log(bodyData);
+  var bodyData = {  
+    firstName:req.body.firstName,  
+    lastName:req.body.lastName,
+    jobTitle:req.body.jobTitle,
+    team:req.body.team,
+    status:req.body.status
+  }; 
    
-  //res.send(req.body);
-  request.post('http://localhost:3000/members', {data: req.body} , (err, response, body) => {
-    res.send(body);
+  request.post({
+      json: true,
+      url: 'http://localhost:3000/members',
+      body: bodyData
+    }, (err, response, body) => {
+      if (response.statusCode <= 500) {
+        res.send(body);
+      }
+  });
+});
+
+// Update member 
+app.put('/api/members/:id', function (req, res) {
+  var bodyData = {  
+    firstName:req.body.firstName,  
+    lastName:req.body.lastName,
+    jobTitle:req.body.jobTitle,
+    team:req.body.team,
+    status:req.body.status
+  }; 
+   
+  request.put({
+      json: true,
+      url: 'http://localhost:3000/members/'+req.params.id,
+      body: bodyData
+    }, (err, response, body) => {
+      if (response.statusCode <= 500) {
+        res.send(body);
+      }
   });
 });
 

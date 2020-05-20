@@ -9,6 +9,8 @@ export class AuthGuard implements CanActivate {
   ) {}
 
   canActivate(): Promise<boolean>{
+    console.log('canActivate caleed....');
+
     return new Promise((resolve, reject) => {
       this.getCurrentUser()
       .then(user => {
@@ -21,8 +23,11 @@ export class AuthGuard implements CanActivate {
   }
 
   getCurrentUser(){
+    console.log('getCurrentUser caleed....');
+
     return new Promise<any>((resolve, reject) => {
       var username = localStorage.getItem('username'); 
+      console.log(username);
         if (username) {
           resolve(username);
         } else {

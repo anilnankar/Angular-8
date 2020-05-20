@@ -22,7 +22,9 @@ export class MembersComponent implements OnInit {
   }
 
   editMemberByID(id: number) {
-    //this.router.navigate(['edit-member']);
+    window.localStorage.removeItem("editUserId");
+    window.localStorage.setItem("editUserId", id.toString());
+    this.router.navigate(['members-edit']);
   }
 
   deleteMemberById(id: number) {

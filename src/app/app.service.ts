@@ -39,6 +39,11 @@ export class AppService {
       .post(`${this.api}/members`, memberForm, headerOption);
   }
 
+  updateMember(id: number, memberForm: Member) {
+    return this.http
+      .put(`${this.api}/members/`+id, memberForm, headerOption);
+  }
+
   deleteMember(id) {
     return this.http
       .delete(`${this.api}/members/`+id);
