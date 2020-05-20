@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../app.service';
+import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,13 +9,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./banner.component.css']
 })
 export class BannerComponent implements OnInit {
-  constructor(public appService: AppService, private router: Router) {}
+  constructor(public appService: AppService, public authService: AuthService, private router: Router) {}
 
   ngOnInit() {}
 
   logout() {
     this.appService.username = '';
-    localStorage.removeItem('username');
+    this.authService.logoutUser();
     this.router.navigate(['/login']);
   }
 }

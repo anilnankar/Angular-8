@@ -37,6 +37,7 @@
     "popper.js": "^1.14.4",
     "request": "^2.88.0",
     "rxjs": "^6.0.0",
+    "rxjs-compat": "^6.5.5",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {

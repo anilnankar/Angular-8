@@ -6,7 +6,9 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 
+import { AuthGuard } from './auth.guard';
 import { AppService } from './app.service';
+import { AuthService } from './auth.service';
 
 import { AppComponent } from './app.component';
 import { BannerComponent } from './banner/banner.component';
@@ -24,15 +26,18 @@ const ROUTES = [
   },
   {
     path: 'members',
-    component: MembersComponent
+    component: MembersComponent,
+    canActivate : [AuthGuard] 
   },
   {
     path: 'members-details',
-    component: MemberDetailsComponent
+    component: MemberDetailsComponent,
+    canActivate : [AuthGuard] 
   },
   {
     path: 'members-edit',
-    component: MemberEditComponent
+    component: MemberEditComponent,
+    canActivate : [AuthGuard] 
   },
   {
     path: 'login',
@@ -50,7 +55,7 @@ const ROUTES = [
     FormsModule,
     HttpClientModule
   ],
-  providers: [ AppService, HttpClient],
+  providers: [AuthGuard, AuthService, AppService, HttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

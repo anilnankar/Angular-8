@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from './app.service';
+import { AuthService } from './auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,12 +11,18 @@ import { AppService } from './app.service';
 export class AppComponent implements OnInit {
   title = 'softrams-racing';
 
-  constructor(private appService: AppService) {
+  constructor(private appService: AppService, private router:Router, private authService:AuthService) {
   }
 
   ngOnInit(): void {
-    if (!this.appService.username || this.appService.username.length < 1) {
-      this.appService.setUsername(localStorage.getItem('username'));
-    }
+    // if (!this.appService.username || this.appService.username.length < 1) {
+    //   this.appService.setUsername(localStorage.getItem('username'));
+    // }
   }
+
+  logout() {
+    this.authService.logoutUser();
+    this.router.navigate(['home']);
+  }
+
 }
