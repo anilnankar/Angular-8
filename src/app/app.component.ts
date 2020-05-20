@@ -11,13 +11,16 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
   title = 'softrams-racing';
 
-  constructor(private appService: AppService, private router:Router, private authService:AuthService) {
+  constructor(
+    private appService: AppService, 
+    private router:Router, 
+    private authService:AuthService) {
   }
 
   ngOnInit(): void {
-    // if (!this.appService.username || this.appService.username.length < 1) {
-    //   this.appService.setUsername(localStorage.getItem('username'));
-    // }
+    if (!this.appService.username || this.appService.username.length < 1) {
+      this.appService.setUsername(localStorage.getItem('username'));
+    }
   }
 
   logout() {

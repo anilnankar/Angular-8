@@ -47,7 +47,14 @@ const ROUTES = [
 
 // Notice how both FormsModule and ReactiveFormsModule imported...choices, choices!
 @NgModule({
-  declarations: [AppComponent, BannerComponent, MemberDetailsComponent, MemberEditComponent, MembersComponent, LoginComponent],
+  declarations: [
+    AppComponent, 
+    BannerComponent, 
+    MemberDetailsComponent, 
+    MemberEditComponent, 
+    MembersComponent, 
+    LoginComponent
+  ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(ROUTES, { useHash: true }),
@@ -55,7 +62,12 @@ const ROUTES = [
     FormsModule,
     HttpClientModule
   ],
-  providers: [AuthGuard, AuthService, AppService, HttpClient],
+  providers: [
+    AuthGuard, 
+    AuthService, 
+    AppService, 
+    HttpClient
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

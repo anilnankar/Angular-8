@@ -1,7 +1,5 @@
 import { TestBed, inject } from '@angular/core/testing';
-
 import { AppService } from './app.service';
-
 import { HttpClientModule } from '@angular/common/http';
 
 describe('AppService', () => {
@@ -15,4 +13,11 @@ describe('AppService', () => {
   it('should be created', inject([AppService], (service: AppService) => {
     expect(service).toBeTruthy();
   }));
+
+  it('should be set username', inject([AppService], (service: AppService) => {
+    service.setUsername('jon');
+    expect(service.username).toEqual('jon');
+  }));
+  
 });
+

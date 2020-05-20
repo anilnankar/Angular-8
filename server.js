@@ -23,6 +23,7 @@ app.use(
     noCache: true
   })
 );
+
 app.use(
   hsts({
     maxAge: 15552000 // 180 days in seconds

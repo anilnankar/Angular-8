@@ -10,7 +10,9 @@ import { Router } from '@angular/router';
 export class MembersComponent implements OnInit {
   members = [];
 
-  constructor(public appService: AppService, private router: Router) {}
+  constructor(
+    public appService: AppService, 
+    private router: Router) {}
 
   ngOnInit() {
     this.appService.getMembers().subscribe(members => (this.members = members));
@@ -18,7 +20,6 @@ export class MembersComponent implements OnInit {
 
   goToAddMemberForm() {
     this.router.navigate(['members-details']);
-    // console.log(`Hmmm...we didn't navigate anywhere`);
   }
 
   editMemberByID(id: number) {
@@ -28,6 +29,11 @@ export class MembersComponent implements OnInit {
   }
 
   deleteMemberById(id: number) {
+    // this.confirmationDialogService.confirm('Please confirm..', 'Do you really want to ... ?')
+    // .then((confirmed) => 
+    //   console.log('User confirmed:', confirmed))
+    // .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+
     this.appService.deleteMember(id).subscribe( data => {
       this.members = this.members.filter(member =>  member.id !== id);
     });

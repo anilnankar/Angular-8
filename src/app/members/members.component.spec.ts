@@ -3,9 +3,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MembersComponent } from './members.component';
 
 import { Router } from '@angular/router';
-
-import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { AppService } from '../app.service';
 
 describe('MembersComponent', () => {
   let component: MembersComponent;
@@ -13,15 +13,15 @@ describe('MembersComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [MembersComponent],
-      imports: [HttpClientModule, RouterModule],
+      declarations: [
+        MembersComponent
+      ],    
+      imports: [
+        RouterTestingModule,
+        HttpClientTestingModule
+      ],
       providers: [
-        {
-          provide: Router,
-          useClass: class {
-            navigate = jasmine.createSpy('navigate');
-          }
-        }
+        AppService
       ]
     }).compileComponents();
   }));

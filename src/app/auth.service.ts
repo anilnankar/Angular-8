@@ -6,17 +6,14 @@ import { of } from 'rxjs';
 @Injectable()
 export class AuthService { 
  
-    private isloggedIn: boolean;
-    private userName:string;
+    public isloggedIn: boolean;
+    public userName:string;
  
     constructor() {
         this.isloggedIn=false;
     }
  
     login(username: string, password:string) {
- 
-        //Assuming users are provided the correct credentials.
-        //In real app you will query the database to verify.
         localStorage.setItem('username', username);
         this.isloggedIn=true;
         this.userName=username;
