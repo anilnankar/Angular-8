@@ -25,6 +25,9 @@ export class LoginComponent implements OnInit {
   }
 
 
+  /** 
+   * Function to set login form
+  */
   ngOnInit() {
     this.loginForm = this.fb.group({
       username: new FormControl('', Validators.required),
@@ -38,6 +41,9 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  /** 
+   * Function authenticate the user
+  */
   login() {
     this.authService.login(this.loginForm.value.username, this.loginForm.value.password).subscribe(data => {
       if (this.retUrl!=null) {

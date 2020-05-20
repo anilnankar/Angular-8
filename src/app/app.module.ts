@@ -17,7 +17,7 @@ import { MemberEditComponent } from './member-edit/member-edit.component';
 import { MembersComponent } from './members/members.component';
 import { LoginComponent } from './login/login.component';
 
-// We may be missing a route...
+// Application routes
 const ROUTES = [
   {
     path: '',
@@ -45,7 +45,6 @@ const ROUTES = [
   }
 ];
 
-// Notice how both FormsModule and ReactiveFormsModule imported...choices, choices!
 @NgModule({
   declarations: [
     AppComponent, 

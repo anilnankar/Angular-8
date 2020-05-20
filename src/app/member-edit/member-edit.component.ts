@@ -19,6 +19,9 @@ export class MemberEditComponent implements OnInit, OnChanges {
 
   constructor(private fb: FormBuilder, private appService: AppService, private router: Router) {}
 
+  /** 
+   * Function fetch team list and set member form
+  */
   ngOnInit() {
     let userId = parseInt(window.localStorage.getItem("editUserId"));
     if(!userId) {
@@ -30,6 +33,7 @@ export class MemberEditComponent implements OnInit, OnChanges {
     // Fetch the teams
     this.appService.getTeams().subscribe(teams => (this.teams = teams));
 
+    // Set form
     this.memberForm = this.fb.group({
       id: new FormControl(''),
       firstName: new FormControl('', Validators.required),
@@ -39,6 +43,7 @@ export class MemberEditComponent implements OnInit, OnChanges {
       status: new FormControl('', Validators.required)
     });
 
+    // Fetch user details
     this.appService.getMember(userId).subscribe( data => {
       this.memberForm.setValue(data);
     });
@@ -47,11 +52,14 @@ export class MemberEditComponent implements OnInit, OnChanges {
 
   ngOnChanges() {}
 
-  // TODO: Add member to members
-  onSubmit() {
+  /** 
+   * Function update the member details
+  */
+ onSubmit() {
+    // Set member model
     this.memberModel = this.memberForm.value;
     
-    // Add new member
+    // Update member
     this.appService.updateMember(this.memberForm.value.id, this.memberModel).subscribe(data => {
       this.router.navigate(['members']);
     });

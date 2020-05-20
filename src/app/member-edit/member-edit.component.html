@@ -39,27 +39,40 @@
             formControlName="jobTitle" 
           />
         </div>
-        <!--We may have to make a service call to get this list-->
-        <select id="team" name="team" formControlName="team" class="col-md-6 custom-select">
-          <option>- Select Team -</option>
-          <option *ngFor="let team of teams">{{ team.teamName }}</option>
-        </select>
+
+        <div class="col-md-6">
+          <!--We may have to make a service call to get this list-->
+          <select id="team" name="team" formControlName="team" class="custom-select">
+            <option>- Select Team -</option>
+            <option *ngFor="let team of teams">{{ team.teamName }}</option>
+          </select>
+        </div>
       </div>
       <br />
-      <div class="form-group col-md-6">
+      <div class="form-group">
         <div class="row">
-          <label id="activeStatus" class="md-check lead">
-            <input type="radio" value="Active" name="status" formControlName="status" /> Active
-          </label>
-          <label id="inActiveStatus"  class="md-check lead">
-            <input type="radio" value="Inactive" name="status" formControlName="status" /> Inactive
-          </label>
+          <div class="col-md-12">
+              <label id="activeStatus" class="md-check lead">
+              <input type="radio" value="Active" name="status" formControlName="status" /> Active
+            </label>
+            <label id="inActiveStatus"  class="md-check lead">
+              <input type="radio" value="Inactive" name="status" formControlName="status" /> Inactive
+            </label>
+          </div>
         </div>
       </div>
     </div>
+
     <!--Disable if form is invalid-->
-    <button type="submit" class="btn btn-primary pull-right">
-      Save Member
-    </button>
+    <div class="row">
+      <div class="col-md-12 pull-right">
+        <button type="submit" class="btn btn-primary pull-right" [disabled]="!memberForm.valid">
+          Update Member
+        </button>
+        <button type="button" class="btn btn-light pull-right" (click)="router.navigate(['members']);">
+          Cancel
+        </button>
+      </div>
+    </div>
   </form>
 </div>

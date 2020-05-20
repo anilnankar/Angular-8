@@ -10,14 +10,24 @@ This POC contains CRUD application with 1) Unit Testing 2) JSON Server
 # Running the Application
 Review the available scripts in the [package.json](package.json)   
 
-# Run in Production Mode
-Application will run on [localhost:8000](http://localhost:8000)
-
-Enter any username and password to login
-`npm start`
+# Run in Express JS Mock API
+Application will run on [localhost:3000](http://localhost:3000)
+Command: `npm start`
 
 # Run in Development Mode
 Application will run on [localhost:4200](http://localhost:4200)
 
 Enter any username and password to login
-`npm run start-dev`
+Command: `ng serve`
+
+# Run Unit Testing
+Application will run on [localhost:9876]
+http://localhost:9876/?id=86390380#
+http://localhost:9876/debug.html
+
+Command: `ng test`
+
+# Open Code coverage report in browser
+`coverage/index.html`
+
+

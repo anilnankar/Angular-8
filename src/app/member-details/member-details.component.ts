@@ -19,10 +19,14 @@ export class MemberDetailsComponent implements OnInit, OnChanges {
 
   constructor(private fb: FormBuilder, private appService: AppService, private router: Router) {}
 
+  /** 
+   * Function fetch team list and set member form
+  */
   ngOnInit() {
     // Fetch the teams
     this.appService.getTeams().subscribe(teams => (this.teams = teams));
 
+    // Set form
     this.memberForm = this.fb.group({
       firstName: new FormControl('', Validators.required),
       lastName: new FormControl('', Validators.required),
@@ -30,12 +34,13 @@ export class MemberDetailsComponent implements OnInit, OnChanges {
       team: new FormControl('', Validators.required),
       status: new FormControl('', Validators.required)
     });
-
   }
 
   ngOnChanges() {}
 
-  // TODO: Add member to members
+  /** 
+   * Function create new member
+  */
   onSubmit() {
     this.memberModel = this.memberForm.value;
 

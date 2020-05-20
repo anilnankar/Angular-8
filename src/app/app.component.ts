@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+
+  // Application title
   title = 'softrams-racing';
 
   constructor(
@@ -17,15 +19,5 @@ export class AppComponent implements OnInit {
     private authService:AuthService) {
   }
 
-  ngOnInit(): void {
-    if (!this.appService.username || this.appService.username.length < 1) {
-      this.appService.setUsername(localStorage.getItem('username'));
-    }
-  }
-
-  logout() {
-    this.authService.logoutUser();
-    this.router.navigate(['home']);
-  }
-
+  ngOnInit(): void {}
 }

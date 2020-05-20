@@ -9,10 +9,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./banner.component.css']
 })
 export class BannerComponent implements OnInit {
-  constructor(public appService: AppService, public authService: AuthService, private router: Router) {}
+  
+  constructor(
+    public appService: AppService, 
+    public authService: AuthService, 
+    private router: Router) {}
 
   ngOnInit() {}
 
+  /** 
+   * Function Logout 
+  */
   logout() {
     this.appService.username = '';
     this.authService.logoutUser();
