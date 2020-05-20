@@ -20,22 +20,22 @@ describe('AauthService', () => {
   }));
   
   it('After login username should set proper username', inject([AuthService], (service: AuthService) => {
-    service.login('admin', '@welcome1');
+    service.login('admin', '123456');
     expect(service.userName).toEqual('admin');
   }));
   
   it('After login successfull', inject([AuthService], (service: AuthService) => {
-    service.login('admin', '@welcome1');
+    service.login('admin', '123456');
     expect(service.isloggedIn).toEqual(true);
   }));
 
   it('Check local storage username after login', inject([AuthService], (service: AuthService) => {
-    service.login('jon', '@welcome1');
-    expect(localStorage.getItem('username')).toEqual('jon');
+    service.login('admin', '123456');
+    expect(localStorage.getItem('username')).toEqual('admin');
   }));
 
   it('After logout Local storage shoule be clear', inject([AuthService], (service: AuthService) => {
-    service.login('admin', '@welcome1');
+    service.login('admin', '123456');
     expect(localStorage.getItem('username')).toEqual('admin');
 
     service.logoutUser();

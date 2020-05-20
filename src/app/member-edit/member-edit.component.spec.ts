@@ -1,24 +1,25 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MembersComponent } from './members.component';
-
-import { Router } from '@angular/router';
+import { MemberEditComponent } from './member-edit.component';
+import { ReactiveFormsModule, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+
 import { AppService } from '../app.service';
 
-describe('MembersComponent', () => {
-  let component: MembersComponent;
-  let fixture: ComponentFixture<MembersComponent>;
+describe('MemberEditComponent', () => {
+  let component: MemberEditComponent;
+  let fixture: ComponentFixture<MemberEditComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        MembersComponent
+        MemberEditComponent
       ],    
       imports: [
+        HttpClientTestingModule,
         RouterTestingModule,
-        HttpClientTestingModule
+        ReactiveFormsModule
       ],
       providers: [
         AppService
@@ -27,19 +28,13 @@ describe('MembersComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MembersComponent);
+    fixture = TestBed.createComponent(MemberEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
-  it('should load members collection', () => {
-    component.ngOnInit();
-    expect(component.members).not.toBe(null);
-  });
-  
+  // it('should create', () => {
+  //   expect(component).toBeTruthy();
+  // });
 
 });

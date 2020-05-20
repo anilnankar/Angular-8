@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   username:string;
   password:string;
   retUrl:string="login";
+  submitted = false;
 
   constructor(private fb: FormBuilder,
               private authService: AuthService, 
@@ -29,9 +30,13 @@ export class LoginComponent implements OnInit {
    * Function to set login form
   */
   ngOnInit() {
+    if(this.authService.isloggedIn) {
+      this.router.navigate( ['members']);
+    }
+
     this.loginForm = this.fb.group({
       username: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required)
+      password: new FormControl('', [Validators.required, Validators.minLength(6)])
     });
     
     this.activatedRoute.queryParamMap
@@ -45,13 +50,32 @@ export class LoginComponent implements OnInit {
    * Function authenticate the user
   */
   login() {
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.loginForm.invalid) {
+      return;
+    }
+
     this.authService.login(this.loginForm.value.username, this.loginForm.value.password).subscribe(data => {
-      if (this.retUrl!=null) {
-           this.router.navigate( [this.retUrl]);
-      } else {
-          this.appService.setUsername(this.loginForm.value.username);
-           this.router.navigate( ['members']);
+      console.log('data='+data);
+      if(data) {
+        this.invalidCredentialMsg = "";
+        if (this.retUrl!=null) {
+          this.router.navigate( [this.retUrl]);
+        } else {
+            this.appService.setUsername(this.loginForm.value.username);
+            this.router.navigate( ['members']);
+        }
+      }
+      else {
+        this.invalidCredentialMsg = "Username/Password is incorrect.";
+        this.router.navigate( ['members']);
       }
     });
   }
+
+  // convenience getter for easy access to form fields
+  get f() { return this.loginForm.controls; }
+
 }

@@ -9,7 +9,7 @@ import { Member } from "../model/member.model";
   templateUrl: './member-details.component.html',
   styleUrls: ['./member-details.component.css']
 })
-export class MemberDetailsComponent implements OnInit, OnChanges {
+export class MemberDetailsComponent implements OnInit {
   memberModel: Member;
   memberForm: FormGroup;
   submitted = false;
@@ -17,7 +17,10 @@ export class MemberDetailsComponent implements OnInit, OnChanges {
   alertMessage: String;
   teams = [];
 
-  constructor(private fb: FormBuilder, private appService: AppService, private router: Router) {}
+  constructor(
+    private fb: FormBuilder, 
+    private appService: AppService, 
+    private router: Router) {}
 
   /** 
    * Function fetch team list and set member form
@@ -28,26 +31,34 @@ export class MemberDetailsComponent implements OnInit, OnChanges {
 
     // Set form
     this.memberForm = this.fb.group({
-      firstName: new FormControl('', Validators.required),
+      firstName: new FormControl('', [Validators.required, Validators.minLength(4)]),
       lastName: new FormControl('', Validators.required),
-      jobTitle: new FormControl('', Validators.required),
+      jobTitle: new FormControl(''),
       team: new FormControl('', Validators.required),
-      status: new FormControl('', Validators.required)
+      status: new FormControl('')
     });
   }
-
-  ngOnChanges() {}
 
   /** 
    * Function create new member
   */
   onSubmit() {
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.memberForm.invalid) {
+      return;
+    }
+
     this.memberModel = this.memberForm.value;
 
     // Add new member
     this.appService.addMember(this.memberModel).subscribe(data => {
       this.router.navigate(['members']);
     });
-
   }
+  
+  // convenience getter for easy access to form fields
+  get f() { return this.memberForm.controls; }
+
 }

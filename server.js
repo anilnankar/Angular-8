@@ -105,7 +105,7 @@ app.put('/api/members/:id', function (req, res) {
   });
 });
 
-// TODO: Dropdown!
+// Fetch teams
 app.get('/api/teams', (req, res) => {
   request('http://localhost:3000/teams', (err, response, body) => {
     if (response.statusCode <= 500) {

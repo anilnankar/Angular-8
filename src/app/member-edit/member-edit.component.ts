@@ -9,15 +9,18 @@ import { Member } from "../model/member.model";
   templateUrl: './member-edit.component.html',
   styleUrls: ['./member-edit.component.css']
 })
-export class MemberEditComponent implements OnInit, OnChanges {
+export class MemberEditComponent implements OnInit {
   memberModel: Member;
-  memberForm: FormGroup;
+  editMemberForm: FormGroup;
   submitted = false;
   alertType: String;
   alertMessage: String;
   teams = [];
 
-  constructor(private fb: FormBuilder, private appService: AppService, private router: Router) {}
+  constructor(
+    private fb: FormBuilder, 
+    private appService: AppService, 
+    private router: Router) {}
 
   /** 
    * Function fetch team list and set member form
@@ -34,35 +37,43 @@ export class MemberEditComponent implements OnInit, OnChanges {
     this.appService.getTeams().subscribe(teams => (this.teams = teams));
 
     // Set form
-    this.memberForm = this.fb.group({
+    this.editMemberForm = this.fb.group({
       id: new FormControl(''),
-      firstName: new FormControl('', Validators.required),
+      firstName: new FormControl('', [Validators.required, Validators.minLength(4)]),
       lastName: new FormControl('', Validators.required),
-      jobTitle: new FormControl('', Validators.required),
+      jobTitle: new FormControl(''),
       team: new FormControl('', Validators.required),
-      status: new FormControl('', Validators.required)
+      status: new FormControl('')
     });
 
     // Fetch user details
     this.appService.getMember(userId).subscribe( data => {
-      this.memberForm.setValue(data);
+      this.editMemberForm.setValue(data);
     });
 
   }
-
-  ngOnChanges() {}
 
   /** 
    * Function update the member details
   */
- onSubmit() {
+  onSubmit() {
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.editMemberForm.invalid) {
+      return;
+    }
+
     // Set member model
-    this.memberModel = this.memberForm.value;
+    this.memberModel = this.editMemberForm.value;
     
     // Update member
-    this.appService.updateMember(this.memberForm.value.id, this.memberModel).subscribe(data => {
+    this.appService.updateMember(this.editMemberForm.value.id, this.memberModel).subscribe(data => {
       this.router.navigate(['members']);
     });
-
   }
+  
+  // convenience getter for easy access to form fields
+  get f() { return this.editMemberForm.controls; }
+
 }

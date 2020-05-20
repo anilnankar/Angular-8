@@ -1,7 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule , FormGroup, Validators } from '@angular/forms';
+import { ReactiveFormsModule , FormGroup, Validators } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
@@ -19,12 +18,9 @@ describe('MemberDetailsComponent', () => {
         MemberDetailsComponent
       ],
       imports: [
-        NgModule,
         HttpClientTestingModule,
         RouterTestingModule,
-        ReactiveFormsModule,
-        FormsModule,
-        FormGroup
+        ReactiveFormsModule
       ],
       providers: [
         AppService, 
@@ -38,7 +34,12 @@ describe('MemberDetailsComponent', () => {
     fixture.detectChanges();
   });
 
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('New record should create', () => {
+    component.onSubmit();
+  });
+  
 });
