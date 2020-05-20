@@ -2,7 +2,7 @@
   <h3 class="text-center lead">Add Member to Racing Team</h3>
   <br />
   <!--Template Driven Form or Model Driven Form?-->
-  <form (ngSubmit)="onSubmit(memberForm)">
+  <form [formGroup]="memberForm" (ngSubmit)="onSubmit()">
     <div>
       <div class="row">
         <div class="col-md-6">
@@ -10,7 +10,10 @@
             type="text"
             class="form-control"
             id="firstName"
+            name="firstName"
             placeholder="First Name"
+            formControlName="firstName" 
+            autofocus
           />
         </div>
         <div class="col-md-6">
@@ -18,7 +21,9 @@
             type="text"
             class="form-control"
             id="lastName"
+            name="lastName"
             placeholder="Last Name"
+            formControlName="lastName" 
           />
         </div>
       </div>
@@ -29,11 +34,14 @@
             type="text"
             class="form-control"
             id="jobTitle"
+            name="jobTitle"
             placeholder="Job Title"
+            formControlName="jobTitle" 
           />
         </div>
         <!--We may have to make a service call to get this list-->
-        <select id="team" class="col-md-6 custom-select">
+        <select id="team" name="team" formControlName="team" class="col-md-6 custom-select">
+          <option>- Select Team -</option>
           <option *ngFor="let team of teams">{{ team.teamName }}</option>
         </select>
       </div>
@@ -41,10 +49,10 @@
       <div class="form-group col-md-6">
         <div class="row">
           <label id="activeStatus" class="md-check lead">
-            <input type="radio" value="Active" name="status" /> Active
+            <input type="radio" value="Active" name="status" formControlName="status" /> Active
           </label>
-          <label class="md-check lead">
-            <input type="radio" value="Inactive" name="status" /> Inactive
+          <label id="inActiveStatus"  class="md-check lead">
+            <input type="radio" value="Inactive" name="status" formControlName="status" /> Inactive
           </label>
         </div>
       </div>

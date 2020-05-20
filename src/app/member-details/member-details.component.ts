@@ -1,16 +1,8 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AppService } from '../app.service';
 import { Router } from '@angular/router';
-
-// This interface may be useful in the times ahead...
-interface Member {
-  firstName: string;
-  lastName: string;
-  jobTitle: string;
-  team: string;
-  status: string;
-}
+import { Member } from "../model/member.model";
 
 @Component({
   selector: 'app-member-details',
@@ -27,12 +19,30 @@ export class MemberDetailsComponent implements OnInit, OnChanges {
 
   constructor(private fb: FormBuilder, private appService: AppService, private router: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    // Fetch the teams
+    this.appService.getTeams().subscribe(teams => (this.teams = teams));
+
+    this.memberForm = this.fb.group({
+      firstName: new FormControl('', Validators.required),
+      lastName: new FormControl('', Validators.required),
+      jobTitle: new FormControl('', Validators.required),
+      team: new FormControl('', Validators.required),
+      status: new FormControl('', Validators.required)
+    });
+
+  }
 
   ngOnChanges() {}
 
   // TODO: Add member to members
-  onSubmit(form: FormGroup) {
-    this.memberModel = form.value;
+  onSubmit() {
+    this.memberModel = this.memberForm.value;
+
+    // Add new member
+    this.appService.addMember(this.memberModel).subscribe(data => {
+      this.router.navigate(['members']);
+    });
+
   }
 }

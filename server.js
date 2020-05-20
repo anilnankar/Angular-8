@@ -35,6 +35,7 @@ app.use(
   })
 );
 
+// Get all members
 app.get('/api/members', (req, res) => {
   request('http://localhost:3000/members', (err, response, body) => {
     if (response.statusCode <= 500) {
@@ -43,14 +44,48 @@ app.get('/api/members', (req, res) => {
   });
 });
 
-// TODO: Dropdown!
-app.get('/api/teams', (req, res) => {
-
+// Get particular member by id
+app.get('/api/members/:id', (req, res) => {
+  request('http://localhost:3000/members/'+req.params.id, (err, response, body) => {
+    if (response.statusCode <= 500) {
+      res.send(body);
+    }
+  });
 });
 
-// Submit Form!
-app.post('/api/addMember', (req, res) => {
+// Delete particular member by id
+app.delete('/api/members/:id', (req, res) => {
+  request.delete('http://localhost:3000/members/'+req.params.id, (err, response, body) => {
+    if (response.statusCode <= 500) {
+      res.send(body);
+    }
+  });
+});
 
+// Add new member 
+app.post('/api/members', function (req, res) {
+//   var bodyData = {  
+//     firstName:req.body.lastName,  
+//     lastName:req.body.lastName,
+//     jobTitle:req.body.jobTitle,
+//     team:req.body.team,
+//     status:req.body.status
+//   }; 
+//   console.log(bodyData);
+   
+  //res.send(req.body);
+  request.post('http://localhost:3000/members', {data: req.body} , (err, response, body) => {
+    res.send(body);
+  });
+});
+
+// TODO: Dropdown!
+app.get('/api/teams', (req, res) => {
+  request('http://localhost:3000/teams', (err, response, body) => {
+    if (response.statusCode <= 500) {
+      res.send(body);
+    }
+  });
 });
 
 app.get('*', (req, res) => {

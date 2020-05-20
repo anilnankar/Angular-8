@@ -9,6 +9,7 @@
         <th>Job Title</th>
         <th>Racing Team</th>
         <th>Status</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -19,6 +20,11 @@
         <td>{{member?.jobTitle}}</td>
         <td>{{member?.team}}</td>
         <td>{{member?.status}}</td>
+        <td>
+          <a (click)="editMemberByID(member.id)" class="text-primary" style="cursor: pointer;">Edit</a>
+          &nbsp;
+          <a (click)="deleteMemberById(member.id)" class="text-primary" style="cursor: pointer;">Delete</a>
+        </td>
       </tr>
     </tbody>
   </table>
