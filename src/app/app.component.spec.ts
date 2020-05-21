@@ -21,30 +21,27 @@ describe('AppComponent', () => {
       imports: [
         ReactiveFormsModule,
         RouterTestingModule,
-        HttpClientTestingModule],
-      providers: [
-        AppService, 
-        AuthService
-      ], 
+        HttpClientTestingModule
+      ],
+      providers: [], 
     }).compileComponents();
   }));
-});
 
-describe(':', () => {
-    function setup() {
-      const fixture = TestBed.createComponent(AppComponent);
-      const app = fixture.debugElement.componentInstance;
-      return { fixture, app };
-    }
+  function setup() {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    return { fixture, app };
+  }
 
-    // it('should create the app', async(() => {
-    //   const { app } = setup();
-    //   expect(app).toBeTruthy();
-    // }));
+  // it('should create the app', async(() => {
+  //   const { app } = setup();
+  //   expect(app).toBeTruthy();
+  // }));
 
     // it(`should have as title 'softrams-racing'`, async(() => {
     //   const fixture = TestBed.createComponent(AppComponent);
     //   const app = fixture.debugElement.componentInstance;
     //   expect(app.title).toEqual('softrams-racing');
     // }));
+
 });

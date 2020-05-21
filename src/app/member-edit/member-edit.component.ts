@@ -3,6 +3,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { AppService } from '../app.service';
 import { Router } from '@angular/router';
 import { Member } from "../model/member.model";
+import { NotificationService } from '../notification/notification.service'
+import { SpinnerVisibilityService } from 'ng-http-loader';
 
 @Component({
   selector: 'app-member-edit',
@@ -20,6 +22,8 @@ export class MemberEditComponent implements OnInit {
   constructor(
     private fb: FormBuilder, 
     private appService: AppService, 
+    private notifyService : NotificationService,
+    private spinner: SpinnerVisibilityService,
     private router: Router) {}
 
   /** 
@@ -63,12 +67,20 @@ export class MemberEditComponent implements OnInit {
     if (this.editMemberForm.invalid) {
       return;
     }
+    // Show Loader
+    this.spinner.show();
 
     // Set member model
     this.memberModel = this.editMemberForm.value;
     
     // Update member
     this.appService.updateMember(this.editMemberForm.value.id, this.memberModel).subscribe(data => {
+      // Set Notification
+      this.notifyService.showSuccess("Member updated successfully", "Success!")
+
+      // Show Loader
+      this.spinner.show();
+
       this.router.navigate(['members']);
     });
   }

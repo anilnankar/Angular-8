@@ -5,10 +5,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgHttpLoaderModule } from 'ng-http-loader';
 
 import { AuthGuard } from './auth.guard';
 import { AppService } from './app.service';
 import { AuthService } from './auth.service';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogService } from './confirmation-dialog/confirmation-dialog.service';
 
 import { AppComponent } from './app.component';
 import { BannerComponent } from './banner/banner.component';
@@ -52,21 +58,32 @@ const ROUTES = [
     MemberDetailsComponent, 
     MemberEditComponent, 
     MembersComponent, 
-    LoginComponent
+    LoginComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(ROUTES, { useHash: true }),
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    NgbModule.forRoot(),
+    ToastrModule.forRoot(),
+    NgHttpLoaderModule.forRoot(),
   ],
   providers: [
     AuthGuard, 
     AuthService, 
     AppService, 
-    HttpClient
+    HttpClient,
+    ConfirmationDialogService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent    
+  ],
+  entryComponents: [
+    ConfirmationDialogComponent
+  ]
 })
 export class AppModule {}

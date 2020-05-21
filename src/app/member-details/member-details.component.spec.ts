@@ -1,11 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
 
 import { ReactiveFormsModule , FormGroup, Validators } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-
+import { NotificationService } from '../notification/notification.service'
 import { AppService } from '../app.service';
 import { MemberDetailsComponent } from './member-details.component';
+import { SpinnerVisibilityService } from 'ng-http-loader';
 
 // Bonus points!
 describe('MemberDetailsComponent', () => {
@@ -24,6 +26,8 @@ describe('MemberDetailsComponent', () => {
       ],
       providers: [
         AppService, 
+        {provide: NotificationService, useClass: NotifyServiceStub},
+        {provide: SpinnerVisibilityService, useClass: SpinnerServiceStub},
       ]
     }).compileComponents();
   }));
@@ -43,3 +47,14 @@ describe('MemberDetailsComponent', () => {
   });
   
 });
+
+class NotifyServiceStub  {
+  showSuccess(message, title){
+    return of([]);
+  }
+}
+
+class SpinnerServiceStub  {
+  show() {};
+  hide() {};
+}

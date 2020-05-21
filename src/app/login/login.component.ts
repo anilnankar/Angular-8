@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router, ActivatedRoute } from '@angular/router';
 import { AppService } from '../app.service';
 import { AuthService } from '../auth.service';
+import { NotificationService } from '../notification/notification.service'
 
 @Component({
   selector: 'app-login',
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
   submitted = false;
 
   constructor(private fb: FormBuilder,
+              private notifyService : NotificationService,
               private authService: AuthService, 
               private appService: AppService, 
               private router: Router, 
@@ -64,12 +66,13 @@ export class LoginComponent implements OnInit {
         if (this.retUrl!=null) {
           this.router.navigate( [this.retUrl]);
         } else {
-            this.appService.setUsername(this.loginForm.value.username);
-            this.router.navigate( ['members']);
+          this.appService.setUsername(this.loginForm.value.username);
+          this.notifyService.showSuccess("Loggedin Successfull!", "Success!")
+          this.router.navigate( ['members']);
         }
       }
       else {
-        this.invalidCredentialMsg = "Username/Password is incorrect.";
+        this.notifyService.showError("Username/Password is incorrect.", "Error!")
         this.router.navigate( ['members']);
       }
     });

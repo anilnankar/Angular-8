@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AppService } from './app.service';
-import { AuthService } from './auth.service';
-import { Router } from '@angular/router';
+import { Spinkit } from 'ng-http-loader';
 
 @Component({
   selector: 'app-root',
@@ -11,12 +9,10 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
 
   // Application title
-  title = 'softrams-racing';
+  public title = 'softrams-racing';
+  public spinkit = Spinkit;
 
-  constructor(
-    private appService: AppService, 
-    private router:Router, 
-    private authService:AuthService) {
+  constructor() {
   }
 
   ngOnInit(): void {}

@@ -3,6 +3,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { AppService } from '../app.service';
 import { Router } from '@angular/router';
 import { Member } from "../model/member.model";
+import { NotificationService } from '../notification/notification.service'
+import { SpinnerVisibilityService } from 'ng-http-loader';
 
 @Component({
   selector: 'app-member-details',
@@ -20,6 +22,8 @@ export class MemberDetailsComponent implements OnInit {
   constructor(
     private fb: FormBuilder, 
     private appService: AppService, 
+    private notifyService : NotificationService, 
+    private spinner: SpinnerVisibilityService,
     private router: Router) {}
 
   /** 
@@ -50,10 +54,19 @@ export class MemberDetailsComponent implements OnInit {
       return;
     }
 
+    // Show Loader
+    this.spinner.show();
+
     this.memberModel = this.memberForm.value;
 
     // Add new member
     this.appService.addMember(this.memberModel).subscribe(data => {
+      // Set Notification
+      this.notifyService.showSuccess("Member addded successfully", "Success!")
+
+      // Show Loader
+      this.spinner.show();
+      
       this.router.navigate(['members']);
     });
   }

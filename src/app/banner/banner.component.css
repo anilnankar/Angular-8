@@ -5,6 +5,15 @@
   position: relative;
 }
 
+.dummyUser label{
+  text-transform: lowercase;
+}
+
+.jumbotron {
+  padding-top: 1.5rem;
+  padding-bottom: 1rem;
+} 
+
 .logout {
   cursor: pointer;
   text-transform: lowercase;
@@ -12,4 +21,10 @@
 
 .welcome {
   text-transform: capitalize;
+}
+
+#statusMessage {
+  position: fixed;
+	left: 15px;
+	bottom: 0px;
 }
