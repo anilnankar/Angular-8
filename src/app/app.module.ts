@@ -68,7 +68,7 @@ const ROUTES = [
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    NgbModule.forRoot(),
+    NgbModule,
     ToastrModule.forRoot(),
     NgHttpLoaderModule.forRoot(),
   ],

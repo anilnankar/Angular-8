@@ -24,7 +24,7 @@ export class MemberDetailsComponent implements OnInit {
     private appService: AppService, 
     private notifyService : NotificationService, 
     private spinner: SpinnerVisibilityService,
-    private router: Router) {}
+    public router: Router) {}
 
   /** 
    * Function fetch team list and set member form

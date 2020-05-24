@@ -3,7 +3,7 @@
     {
       "firstName": "Anil",
       "lastName": "Test",
-      "jobTitle": "abcd",
+      "jobTitle": "abcd adf",
       "team": "Formula 2 - Car 54",
       "status": "Active",
       "id": 14
@@ -15,6 +15,29 @@
       "team": "Formula 1 - Car 8",
       "status": "Active",
       "id": 15
+    }
+  ],
+  "products": [
+    {
+      "name": "Premsons 608 Four Bearing Fidget Spinner",
+      "description": "Perfect toy for fidgeters. Updated",
+      "isAvailable": true,
+      "price": 150,
+      "id": 2
+    },
+    {
+      "id": 3,
+      "name": "Bahubali DVD",
+      "description": "Raised in a remote tribal village, Shivudu grows up a carefree young man who relentlessly pursues his heart\"s desire.",
+      "isAvailable": false,
+      "price": 299
+    },
+    {
+      "name": "asdf asdf asdf",
+      "description": "asdfa sdfasfasdf",
+      "isAvailable": true,
+      "price": 2234234,
+      "id": 4
     }
   ],
   "teams": [

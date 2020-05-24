@@ -36,6 +36,7 @@ app.use(
   })
 );
 
+
 // Get all members
 app.get('/api/members', (req, res) => {
   request('http://localhost:3000/members', (err, response, body) => {
@@ -113,6 +114,75 @@ app.get('/api/teams', (req, res) => {
     }
   });
 });
+
+
+
+// Get all products
+app.get('/api/products', (req, res) => {
+  request('http://localhost:3000/products', (err, response, body) => {
+    if (response.statusCode <= 500) {
+      res.send(body);
+    }
+  });
+});
+
+// Get particular products by id
+app.get('/api/products/:id', (req, res) => {
+  request('http://localhost:3000/products/'+req.params.id, (err, response, body) => {
+    if (response.statusCode <= 500) {
+      res.send(body);
+    }
+  });
+});
+
+// Delete particular products by id
+app.delete('/api/products/:id', (req, res) => {
+  request.delete('http://localhost:3000/products/'+req.params.id, (err, response, body) => {
+    if (response.statusCode <= 500) {
+      res.send(body);
+    }
+  });
+});
+
+// Add new products 
+app.post('/api/products', function (req, res) {
+  var bodyData = {  
+    name:req.body.name,  
+    description:req.body.description,
+    isAvailable:req.body.isAvailable,
+    price:req.body.price
+  }; 
+  request.post({
+      json: true,
+      url: 'http://localhost:3000/products',
+      body: bodyData
+    }, (err, response, body) => {
+      if (response.statusCode <= 500) {
+        res.send(body);
+      }
+  });
+});
+
+// Update member 
+app.put('/api/products/:id', function (req, res) {
+  var bodyData = {  
+    name:req.body.name,  
+    description:req.body.description,
+    isAvailable:req.body.isAvailable,
+    price:req.body.price
+  }; 
+   
+  request.put({
+      json: true,
+      url: 'http://localhost:3000/products/'+req.params.id,
+      body: bodyData
+    }, (err, response, body) => {
+      if (response.statusCode <= 500) {
+        res.send(body);
+      }
+  });
+});
+
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/softrams-racing/index.html'));

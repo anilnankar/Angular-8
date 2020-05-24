@@ -1,18 +1,13 @@
 #raceCar {
   width: 50%;
   height: 50%;
-  top: -50px;
+  top: -34px;
   position: relative;
 }
 
 .dummyUser label{
   text-transform: lowercase;
 }
-
-.jumbotron {
-  padding-top: 1.5rem;
-  padding-bottom: 1rem;
-} 
 
 .logout {
   cursor: pointer;

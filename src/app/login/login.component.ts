@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
    * Function to set login form
   */
   ngOnInit() {
-    if(this.authService.isloggedIn) {
+    if(this.authService.isUserLoggedIn()) {
       this.router.navigate( ['members']);
     }
 
