@@ -22,8 +22,8 @@ Command: `ng serve`
 
 # Run Unit Testing
 Application will run on [localhost:9876]
-http://localhost:9876/?id=86390380#
-http://localhost:9876/debug.html
+`http://localhost:9876/?id=86390380#`
+`http://localhost:9876/debug.html`
 
 Command: `ng test`
 

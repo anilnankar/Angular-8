@@ -26,10 +26,11 @@ export class AuthService {
     }
  
     isUserLoggedIn(): boolean {
-        return localStorage.getItem('username') != "";
+        return localStorage.getItem('username') != null;
     }
     
     logoutUser(): void{
+        localStorage.setItem('username', "");
         localStorage.removeItem('username');
         this.isloggedIn = false;
     }

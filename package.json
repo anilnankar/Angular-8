@@ -1,6 +1,6 @@
 {
-  "name": "softrams-racing",
-  "version": "0.0.0",
+  "name": "angularcompletepoc",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "build": "ng build --prod",

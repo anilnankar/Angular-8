@@ -4,7 +4,7 @@
       "firstName": "Anil",
       "lastName": "Test",
       "jobTitle": "abcd adf",
-      "team": "Formula 2 - Car 54",
+      "team": "Testing",
       "status": "Active",
       "id": 14
     },
@@ -12,7 +12,7 @@
       "firstName": "John",
       "lastName": "Killar",
       "jobTitle": "test",
-      "team": "Formula 1 - Car 8",
+      "team": "Management",
       "status": "Active",
       "id": 15
     }
@@ -43,43 +43,23 @@
   "teams": [
     {
       "id": 1,
-      "teamName": "Formula 1 - Car 77"
+      "teamName": "Developement"
     },
     {
       "id": 2,
-      "teamName": "Formula 1 - Car 8"
+      "teamName": "Testing"
     },
     {
       "id": 3,
-      "teamName": "Formula 2 - Car 54"
+      "teamName": "Dev Ops"
     },
     {
       "id": 4,
-      "teamName": "Formula 2 - Car 63"
+      "teamName": "Management"
     },
     {
       "id": 5,
-      "teamName": "Deutsche Tourenwagen Masters - Car 117"
-    },
-    {
-      "id": 6,
-      "teamName": "Deutsche Tourenwagen Masters - Car 118"
-    },
-    {
-      "id": 7,
-      "teamName": "World Endurance Championship - Car 99"
-    },
-    {
-      "id": 8,
-      "teamName": "World Endurance Championship - Car 5"
-    },
-    {
-      "id": 9,
-      "teamName": "World Rally Championship - Car 77"
-    },
-    {
-      "id": 10,
-      "teamName": "World Rally Championship - Car 90"
+      "teamName": "Technical Support"
     }
   ]
 }
